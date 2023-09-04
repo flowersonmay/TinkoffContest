@@ -1,22 +1,22 @@
 import java.util.*;
 
-public class Main {
+public class Task5 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String[] input = scanner.nextLine().split(" ");
         int n = Integer.parseInt(input[0]);
         int m = Integer.parseInt(input[1]);
 
-        List<Triple<Integer, Integer, Integer>> edges = new ArrayList<>();
+        List<Main.Triple<Integer, Integer, Integer>> edges = new ArrayList<>();
         for (int i = 0; i < m; i++) {
             String[] edgeInput = scanner.nextLine().split(" ");
             int u = Integer.parseInt(edgeInput[0]);
             int v = Integer.parseInt(edgeInput[1]);
             int w = Integer.parseInt(edgeInput[2]);
-            edges.add(new Triple<>(u, v, w));
+            edges.add(new Main.Triple<>(u, v, w));
         }
 
-        edges.sort(Comparator.comparingInt(Triple::getThird));
+        edges.sort(Comparator.comparingInt(Main.Triple::getThird));
 
         int left = 0;
         int right = edges.get(edges.size() - 1).getThird();
@@ -25,8 +25,8 @@ public class Main {
 
         while (left < right) {
             int mid = (left + right + 1) / 2;
-            List<Triple<Integer, Integer, Integer>> filteredEdges = new ArrayList<>();
-            for (Triple<Integer, Integer, Integer> edge : edges) {
+            List<Main.Triple<Integer, Integer, Integer>> filteredEdges = new ArrayList<>();
+            for (Main.Triple<Integer, Integer, Integer> edge : edges) {
                 if (edge.getThird() > mid) {
                     filteredEdges.add(edge);
                 }
@@ -39,8 +39,8 @@ public class Main {
             }
         }
 
-        List<Triple<Integer, Integer, Integer>> filteredEdges = new ArrayList<>();
-        for (Triple<Integer, Integer, Integer> edge : edges) {
+        List<Main.Triple<Integer, Integer, Integer>> filteredEdges = new ArrayList<>();
+        for (Main.Triple<Integer, Integer, Integer> edge : edges) {
             if (edge.getThird() > left) {
                 filteredEdges.add(edge);
             }
@@ -57,12 +57,12 @@ public class Main {
         System.out.println(left);
     }
 
-    public static int countComponents(int n, List<Triple<Integer, Integer, Integer>> edges) {
+    public static int countComponents(int n, List<Main.Triple<Integer, Integer, Integer>> edges) {
         Map<Integer, List<Integer>> graph = new HashMap<>();
         for (int i = 1; i <= n; i++) {
             graph.put(i, new ArrayList<>());
         }
-        for (Triple<Integer, Integer, Integer> edge : edges) {
+        for (Main.Triple<Integer, Integer, Integer> edge : edges) {
             int u = edge.getFirst();
             int v = edge.getSecond();
             graph.get(u).add(v);
@@ -112,5 +112,4 @@ public class Main {
             return third;
         }
     }
-
 }
