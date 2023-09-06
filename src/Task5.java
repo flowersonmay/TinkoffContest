@@ -3,12 +3,12 @@ import java.util.*;
 public class Task5 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String[] input = scanner.nextLine().split(" ");
-        int n = Integer.parseInt(input[0]);
-        int m = Integer.parseInt(input[1]);
+        String[] inputData = scanner.nextLine().split(" ");
+        int countCity = Integer.parseInt(inputData[0]);
+        int countRoad = Integer.parseInt(inputData[1]);
 
         List<Triple<Integer, Integer, Integer>> edges = new ArrayList<>();
-        for (int i = 0; i < m; i++) {
+        for (int i = 0; i < countRoad; i++) {
             String[] edgeInput = scanner.nextLine().split(" ");
             int u = Integer.parseInt(edgeInput[0]);
             int v = Integer.parseInt(edgeInput[1]);
@@ -21,7 +21,7 @@ public class Task5 {
         int left = 0;
         int right = edges.get(edges.size() - 1).getThird();
 
-        int startComponentsCount = countComponents(n, edges);
+        int startComponentsCount = countComponents(countCity, edges);
 
         while (left < right) {
             int mid = (left + right + 1) / 2;
@@ -31,7 +31,7 @@ public class Task5 {
                     filteredEdges.add(edge);
                 }
             }
-            int components = countComponents(n, filteredEdges);
+            int components = countComponents(countCity, filteredEdges);
             if (components > startComponentsCount) {
                 right = mid - 1;
             } else {
@@ -45,7 +45,7 @@ public class Task5 {
                 filteredEdges.add(edge);
             }
         }
-        int newCount = countComponents(n, filteredEdges);
+        int newCount = countComponents(countCity, filteredEdges);
 
         if (newCount > startComponentsCount) {
             left -= 1;

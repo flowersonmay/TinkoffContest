@@ -3,10 +3,10 @@ import java.util.*;
 public class Task4 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String[] data = scanner.nextLine().split(" ");
+        String[] inputData = scanner.nextLine().split(" ");
         String[] nominalBanknotes = scanner.nextLine().split(" ");
 
-        int cash = Integer.parseInt(data[0]);
+        int cash = Integer.parseInt(inputData[0]);
         List<Integer> nominalValue = new ArrayList<>();
 
         for (String num : nominalBanknotes) {
@@ -30,9 +30,8 @@ public class Task4 {
 
     public static List<Integer> allCombination(List<Integer> startArray, int sum) {
         int totalSum = 0;
-        for (int num : startArray) {
-            totalSum += num;
-        }
+        if (!startArray.isEmpty())
+            totalSum = startArray.stream().mapToInt(v -> v).sum();
 
         if (totalSum == sum) {
             return startArray;

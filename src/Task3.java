@@ -5,39 +5,39 @@ public class Task3 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        int n = scanner.nextInt();
-        int[] a = new int[n];
-        int[] b = new int[n];
+        int inputData = scanner.nextInt();
+        int[] joesConsistency = new int[inputData];
+        int[] winnerConsistency = new int[inputData];
 
-        for (int i = 0; i < n; i++) {
-            a[i] = scanner.nextInt();
+        for (int i = 0; i < inputData; i++) {
+            joesConsistency[i] = scanner.nextInt();
         }
-        for (int i = 0; i < n; i++) {
-            b[i] = scanner.nextInt();
+        for (int i = 0; i < inputData; i++) {
+            winnerConsistency[i] = scanner.nextInt();
         }
 
-        if ((a.length == 1) && (b.length == 1) && (a[0]==b[0])){
+        if ((joesConsistency.length == 1) && (winnerConsistency.length == 1) && (joesConsistency[0]==winnerConsistency[0])){
             System.out.println("YES");
             return;
         }
-        if (Arrays.stream(a).sum() != Arrays.stream(b).sum()) {
+        if (Arrays.stream(joesConsistency).sum() != Arrays.stream(winnerConsistency).sum()) {
             System.out.println("NO");
             return;
         }
-        int firstDiff = -1;
-        int lastDiff = -1;
+        int leftDifferences = -1;
+        int rightDifferences = -1;
 
-        for (int i = 0; i < n; i++) {
-            if (a[i] != b[i]) {
-                if (firstDiff == -1) {
-                    firstDiff = i;
+        for (int i = 0; i < inputData; i++) {
+            if (joesConsistency[i] != winnerConsistency[i]) {
+                if (leftDifferences == -1) {
+                    leftDifferences = i;
                 }
-                lastDiff = i;
+                rightDifferences = i;
             }
         }
-        Arrays.sort(a,firstDiff,lastDiff+1);
-        for (int i = 0; i < n; i++) {
-            if (a[i] != b[i]) {
+        Arrays.sort(joesConsistency,leftDifferences,rightDifferences+1);
+        for (int i = 0; i < inputData; i++) {
+            if (joesConsistency[i] != winnerConsistency[i]) {
                 System.out.println("NO");
                 return;
             }
